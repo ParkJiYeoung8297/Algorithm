@@ -5,7 +5,7 @@ class Node:
 class Stack:
     def __init__(self):
         self.stringlist=[]
-        self.size=0;
+        self.size=0
 
     def push(self,data):
         node=Node(data)
