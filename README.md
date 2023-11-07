@@ -8,3 +8,5 @@
 
 ## 다시 복습
 17299
+
+https://github.com/ParkJiYeoung8297/Baekjoon-Algorithm/blob/main/Data%20Structure/10828(%EC%8A%A4%ED%83%9D)
