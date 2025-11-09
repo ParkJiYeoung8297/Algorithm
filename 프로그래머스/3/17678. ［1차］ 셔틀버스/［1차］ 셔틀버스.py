@@ -39,4 +39,3 @@ def solution(n, t, m, timetable):
     hour=str(last//60)
     minute= str(last-60*(last//60))
     return hour.rjust(2,"0")+":"+minute.rjust(2,"0")
-    return answer
