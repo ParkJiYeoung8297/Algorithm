@@ -1,15 +1,22 @@
 from collections import deque
 def solution(A, B):
-    answer = 0
+    result=0
     A.sort(reverse=True)
     B.sort(reverse=True)
+    A=deque(A)
     B=deque(B)
     
     for i in range(len(A)):
-        if A[i]>=B[0]:
+        # A가 크면 젤 작은거 내보내기 (어처피 못이기니까 피해 최소화)
+        if A[0]>B[0]:
+            B.pop()
+            A.popleft()
+        elif A[0]==B[0]:
+            A.popleft()
             B.pop()
         else:
+            A.popleft()
             B.popleft()
-            answer+=1
-        
-    return answer
+            result+=1
+            
+    return result
