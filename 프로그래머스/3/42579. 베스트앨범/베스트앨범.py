@@ -1,21 +1,20 @@
 from collections import defaultdict
 def solution(genres, plays):
     answer = []
+    G=defaultdict(list)
     count=defaultdict(int)
-    music=defaultdict(list)
+    for idx,value in enumerate(plays):
+        count[genres[idx]]+=value
+        G[genres[idx]].append((-value,idx))
+    genre=sorted(count.keys(), key=lambda x:count[x],reverse=True)
     
-    for i in range(len(genres)):
-        music[genres[i]].append((plays[i],-i)) # play는 큰거, i는 작은거가 우선순위
-        count[genres[i]]+=plays[i]
+    for g in genre:
+        if len(G[g])==1:
+            answer.append(G[g][0][1])
+            continue
+        G[g].sort()
+        answer.append(G[g][0][1])
+        answer.append(G[g][1][1])
 
-    sorted_count=sorted(count.keys(),reverse=True,key=lambda x:count[x])
-    
-    for c in sorted_count:
-        music[c].sort(reverse=True)
-        if len(music[c])==1:
-            answer.append(-music[c][0][1])
-        elif len(music[c])>=2:
-            answer.append(-music[c][0][1])
-            answer.append(-music[c][1][1])
         
     return answer
