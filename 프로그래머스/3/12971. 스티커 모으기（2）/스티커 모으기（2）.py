@@ -8,7 +8,7 @@ def solution(sticker):
 
     # 첫번쨰 스티커를 떼는 경우
     dp_first[0]=sticker[0]
-    dp_first[1]=max(sticker[1],dp_first[0])  # 이거 유의하기! dp[1]도 채워줘야함
+    dp_first[1]=sticker[0]  # 이거 유의하기! dp[1]도 채워줘야함
     for i in range(2,len(sticker)-1):
         dp_first[i]=max(dp_first[i-2]+sticker[i], dp_first[i-1])
         
