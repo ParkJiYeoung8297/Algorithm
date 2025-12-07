@@ -1,31 +1,28 @@
 from collections import defaultdict
 def solution(str1, str2):
     answer = 0
-    str1=str1.lower()
-    str2=str2.lower()
-    S1=defaultdict(int)
-    S2=defaultdict(int)
-    
-    # 두 문자씩 자르기
+    dict_one=defaultdict(int)
+    dict_two=defaultdict(int)
     for i in range(len(str1)-1):
-        if str1[i].isalpha() and str1[i+1].isalpha():
-            S1[str1[i]+str1[i+1]]+=1
-    
+        string=(str1[i]+str1[i+1]).lower()
+        if string.isalpha():
+            dict_one[string]+=1
     for i in range(len(str2)-1):
-        if str2[i].isalpha() and str2[i+1].isalpha():
-            S2[str2[i]+str2[i+1]]+=1
+        string=(str2[i]+str2[i+1]).lower()
+        if (string).isalpha():
+            dict_two[string]+=1
     
-    S1_set=set(S1.keys())
-    S2_set=set(S2.keys())
+    set_one=set(dict_one.keys())
+    set_two=set(dict_two.keys())
     
-    int_total=0
-    uni_total=0
+    inter=set_one.intersection(set_two)
+    un=set_one.union(set_two)
     
-    for k in S1_set.intersection(S2_set):
-        int_total+=min(S1[k],S2[k])
-        
-    for k in S1_set.union(S2_set):
-        uni_total+=max(S1[k],S2[k])
-    
-        
-    return int((int_total/uni_total)*65536) if uni_total!=0 else 65536
+    up=0
+    down=0
+    for s in inter:
+        up+=min(dict_one[s],dict_two[s])
+    for s in un:
+        down+=max(dict_one[s],dict_two[s])
+  
+    return int((up/down)*65536) if down!=0 else 65536
