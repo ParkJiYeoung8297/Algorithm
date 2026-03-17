@@ -47,7 +47,7 @@ public class Main {
     }
 
     private static void changeBoy(int[] arr, int index) {
-        for (int i = 1; i < arr.length; i++) {
+        for (int i = index; i < arr.length; i++) {
             if (i % index == 0) {
                 arr[i] = 1 - arr[i];
             }
