@@ -5,6 +5,7 @@
 // 스터디 피드백 :
 // dp 이용하면 더 간단하게 구현 가능
 // 2차원 dp면 10000을 보통 안넘음
+// 억이 넘어가면 overflow가 날수 있어서 int말고 Long을 사용하는 것이 좋다.
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -28,13 +29,13 @@ public class Main {
             cost[i] = Integer.parseInt(st.nextToken());
         }
 
-        int oil = 0;
-        int dist;
+        Long oil = 0L;
+        Long dist;
         int idx = 0;
         int pointer = 0;
 
         while (idx < distance.length) {
-            dist = 0;
+            dist = 0L;
             while (cost[idx] <= cost[pointer] && pointer < distance.length) {
                 dist += distance[pointer];
                 pointer++;
