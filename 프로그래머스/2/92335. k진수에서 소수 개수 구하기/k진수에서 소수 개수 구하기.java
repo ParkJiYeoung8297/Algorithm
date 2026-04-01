@@ -1,4 +1,4 @@
-// 진수 변환하는 방법 - radixChange
+// 진수 변환하는 방법 - radixChange, 근데 Integer.toString(n,k)으로 메서드 존재함
 // 소수인지 판단하는 방법 - isPrime (제곱근까지만 탐색)
 // 제곱 - Math.pow()
 // StringBuilder로 String 이어붙이기
@@ -10,7 +10,7 @@ class Solution {
     public int solution(int n, int k) {
         int answer = 0;
         
-        String radix = radixChange(n,k);
+        String radix = Integer.toString(n,k);
         String[] arr = radix.split("0");
 
         for (String s:arr){
