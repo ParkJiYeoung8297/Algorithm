@@ -1,27 +1,30 @@
-// heap을 이용하면 가장 작은 요소를 O(1)로 꺼낼 수 있다.
-// PriorityQueue는 최소 요소가 default이고, poll()해서 꺼낸다.
-// 값 조회만 할떄는 peek() 사용하기!
+// 힙으로 pop 두 번 하고, 1번 넣음
+// 처음 pop 했을 때 값이 k 이상이면 끝
 import java.util.*;
 class Solution {
     public int solution(int[] scoville, int K) {
         int answer = 0;
-        int scov=0;
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        for (int s : scoville){
-            minHeap.add(s);
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        
+        for (int i = 0; i< scoville.length;i++){
+            heap.add(scoville[i]);
         }
         
-        while (minHeap.peek()<K){
-            if (minHeap.size()<2){
-                return -1;
+        while(heap.size()>1){
+            int a = heap.poll();
+            if (a >= K){
+                return answer;
             }
-            int min = minHeap.poll();
-            int secondMin = minHeap.poll();
-            scov=min+secondMin*2;
-            minHeap.add(scov);
-            
+            int b = heap.poll();
+            heap.add(a+b*2);
             answer++;
         }
-        return answer;
+        int a=heap.poll();
+        
+        if (a>=K){
+            return answer;
+        }
+        
+        return -1;
     }
 }
