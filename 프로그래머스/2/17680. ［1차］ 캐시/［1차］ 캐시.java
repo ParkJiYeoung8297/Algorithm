@@ -1,3 +1,4 @@
+// 자바에서 deque은 중간 값 제거도 가능함 
 import java.util.*;
 class Solution {
     static Deque<String> deque = new ArrayDeque<>();
@@ -12,21 +13,8 @@ class Solution {
             String lowerCaseCity = city.toLowerCase();
             if(isHit(lowerCaseCity)){
                 answer++;
-                
-                Stack<String> stack = new Stack<>();
-                while(!deque.isEmpty()){
-                    String removed = deque.removeFirst();
-                    if(removed.equals(lowerCaseCity)){
-                        deque.add(lowerCaseCity);
-                        break;
-                    }
-                    stack.add(removed);
-                }
-                
-                while(!stack.isEmpty()){
-                    deque.addFirst(stack.pop());
-                }
-                
+                deque.remove(lowerCaseCity);
+                deque.add(lowerCaseCity);
             } else{
                 answer+=5;
                 
