@@ -1,9 +1,8 @@
 import java.util.*;
 class Solution {
     public int[] solution(int[] array, int[][] commands) {
-        // int[] answer = new int[commands.length];
-        // int n = 0;
-        ArrayList<Integer> answer = new ArrayList<>();
+        int[] answer = new int[commands.length];
+        int n = 0;
         for (int[] command : commands){
             int i = command[0]-1;
             int j = command[1]-1;
@@ -14,12 +13,9 @@ class Solution {
                 newList.add(array[x]);
             }
             Collections.sort(newList);
-            answer.add(newList.get(k));
-            // answer[n]=newList.get(k);
-            // n++;
+            answer[n]=newList.get(k);
+            n++;
         }
-        return answer.stream()
-            .mapToInt(Integer::intValue)
-            .toArray();
+        return answer;
     }
 }
