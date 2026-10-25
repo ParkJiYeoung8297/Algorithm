@@ -1,9 +1,14 @@
--- 코드를 작성해주세요
-SELECT n.ID, fni.FISH_NAME, n.MAX_LENGTH as LENGTH
-FROM FISH_NAME_INFO as fni
-JOIN (SELECT fi.ID, m.FISH_TYPE, m.MAX_LENGTH
-FROM FISH_INFO as fi
-JOIN (SELECT FISH_TYPE, max(LENGTH) as MAX_LENGTH FROM FISH_INFO GROUP BY FISH_TYPE) as m
-ON fi.FISH_TYPE = m.FISH_TYPE
-AND fi.LENGTH = m.MAX_LENGTH) as n
-ON fni.FISH_TYPE = n.FISH_TYPE;
+# 물고기 종류 별로 가장 큰 물고기
+# 물고기의 ID에 대해 오름차순 정렬
+SELECT ID, FISH_NAME, MAX_LENGTH as LENGTH
+FROM (
+    SELECT 
+        fi.ID, 
+        fni.FISH_NAME, 
+        fi.LENGTH, 
+        max(fi.LENGTH) over(partition by fi.FISH_TYPE) as MAX_LENGTH
+    FROM FISH_INFO as fi
+    JOIN FISH_NAME_INFO as fni
+    ON fi.FISH_TYPE = fni.FISH_TYPE) as fish
+WHERE LENGTH = MAX_LENGTH
+ORDER BY ID;
